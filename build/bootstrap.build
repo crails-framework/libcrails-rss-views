@@ -1,0 +1,7 @@
+project = libcrails-rss-views
+
+using version
+using config
+using test
+using install
+using dist

@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libcrails-rss-views/
+}
+
+export $out_root/libcrails-rss-views/$import.target

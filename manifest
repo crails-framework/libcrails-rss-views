@@ -1,0 +1,11 @@
+: 1
+name: libcrails-rss-views
+version: 2.0.0
+summary: crails-rss-views C++ library
+license: BSD-3-Clause
+description-file: README.md
+url: https://github.com/crails-framework/libcrails-rss-views
+email: michael@unetresgrossebite.com
+depends: * build2 >= 0.15.0
+depends: * bpkg >= 0.15.0
+depends: { libcrails libcrails-templates } ^2.0.0

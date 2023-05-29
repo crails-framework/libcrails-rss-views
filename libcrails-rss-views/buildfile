@@ -1,0 +1,33 @@
+intf_libs = # Interface dependencies.
+impl_libs = # Implementation dependencies.
+import intf_libs += libcrails%lib{crails}
+import intf_libs += libcrails-templates%lib{crails-templates}
+
+lib{crails-rss-views}: {hxx ixx txx cxx}{**} $impl_libs $intf_libs
+
+hxx{export}@./: cxx.importable = false
+
+cxx.poptions =+ "-I$out_root" "-I$src_root"
+
+{hbmia obja}{*}: cxx.poptions += -DLIBCRAILS_RSS_VIEWS_STATIC_BUILD
+{hbmis objs}{*}: cxx.poptions += -DLIBCRAILS_RSS_VIEWS_SHARED_BUILD
+
+lib{crails-rss-views}:
+{
+  cxx.export.poptions = "-I$out_root/libcrails-rss-views" "-I$src_root/libcrails-rss-views"
+  cxx.export.libs = $intf_libs
+}
+
+liba{crails-rss-views}: cxx.export.poptions += -DLIBCRAILS_RSS_VIEWS_STATIC
+libs{crails-rss-views}: cxx.export.poptions += -DLIBCRAILS_RSS_VIEWS_SHARED
+
+if $version.pre_release
+  lib{crails-rss-views}: bin.lib.version = "-$version.project_id"
+else
+  lib{crails-rss-views}: bin.lib.version = "-$version.major.$version.minor"
+
+{hxx ixx txx}{*}:
+{
+  install         = include/
+  install.subdirs = true
+}
