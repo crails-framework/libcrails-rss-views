@@ -80,6 +80,13 @@ string RssTemplate::last_build_date(std::time_t value)
   return "<lastBuildDate>" + rfc822_datetime(value) + "</lastBuildDate>";
 }
 
+string RssTemplate::enclosure(const string& url, size_t length, const string& mimetype)
+{
+  return "<enclosure url=\""+ url + '"'
+    + " length=\"" + to_string(length) + '"'
+    + " type=\"" + mimetype + "\" />";
+}
+
 string RssTemplate::guid(const string& value)
 {
   if (value.find("http") == 0)

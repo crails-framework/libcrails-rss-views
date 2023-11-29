@@ -26,6 +26,7 @@ namespace Crails
     static std::string category(const std::string&);
     static std::string publication_date(std::time_t);
     static std::string last_build_date(std::time_t);
+    static std::string enclosure(const std::string& url, std::size_t length, const std::string& mimetype);
     static std::string guid(const std::string&);
     static std::string guid(unsigned long long);
   };
