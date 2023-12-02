@@ -3,11 +3,12 @@
 using namespace std;
 using namespace Crails;
 
-bool RssRenderer::can_render(const std::string& accept_header, const std::string& view) const
+const vector<string>& RssRenderer::get_mimetypes() const
 {
-  if (accept_header.find("application/rss+xml")  != std::string::npos)
-    return templates.find(view) != templates.end();
-  return (false);
+  static const vector<string> mimetypes{
+    "application/rss+xml", "application/atom+xml", "application/rdf+xml"
+  };
+  return mimetypes;
 }
 
 void RssRenderer::render_template(const std::string& view, RenderTarget& target, SharedVars& vars) const
